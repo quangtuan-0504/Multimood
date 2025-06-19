@@ -113,15 +113,7 @@ torchrun --nproc_per_node=2 RL_GRPO/train_base.py \
 
 - Make sure all CUDA-dependent packages (like `flash-attn`, `deepspeed`, `bitsandbytes`) are compiled/installed with CUDA 12.4 compatibility.
 - If you face issues with Flash Attention or other compiled packages, refer to their specific build instructions for CUDA 12.4.
-- To monitor training logs, consider using `wandb` or other tools if integrated.
-
 ---
-
-## 📚 References
-
-- GRPO paper: [arXiv:2404.13489](https://arxiv.org/abs/2404.13489)
-- Qwen2 model: [Qwen/Qwen2-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2-0.5B-Instruct)
-- BGEM3 Reward Model: [FlagEmbedding BGEM3](https://huggingface.co/BAAI/bge-m3)
 
 ---
 
