@@ -1,0 +1,1 @@
+See the [SetSUMBT Code](https://github.com/ConvLab/ConvLab-3/blob/master/convlab/dst/setsumbt) for the new SUMBT code.

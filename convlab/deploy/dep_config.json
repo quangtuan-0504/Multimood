@@ -1,0 +1,69 @@
+{
+  "net": {
+    "port": 8787,
+    "app_name": "convlab",
+    "session_time_out": 300
+  },
+  "nlu": {
+    "t5nlu-mul": {
+      "class_path": "convlab.base_models.t5.nlu.T5NLU",
+      "data_set": "multiwoz",
+      "ini_params": {
+        "speaker": "user",
+        "context_window_size": 0,
+        "model_name_or_path": "ConvLab/t5-small-nlu-multiwoz21"
+      },
+      "model_name": "t5nlu-mul",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    }
+  },
+  "dst": {
+    "t5dst-mul": {
+      "class_path": "convlab.base_models.t5.dst.T5DST",
+      "data_set": "multiwoz",
+      "ini_params": {
+        "dataset_name": "multiwoz21",
+        "speaker": "user",
+        "context_window_size": 100,
+        "model_name_or_path": "ConvLab/t5-small-dst-multiwoz21"
+      },
+      "model_name": "t5dst-mul",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    }
+  },
+  "policy": {
+    "ddpt-mul": {
+      "class_path": "convlab.policy.vtrace_DPT.VTRACE",
+      "data_set": "multiwoz",
+      "ini_params": {
+        "is_train": false,
+        "seed": 0,
+        "load_path": "from_pretrained", 
+        "dataset_name": "multiwoz21"
+      },
+      "model_name": "ddpt-mul",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    }
+  },
+  "nlg": {
+    "t5nlg-mul": {
+      "class_path": "convlab.base_models.t5.nlg.T5NLG",
+      "data_set": "multiwoz",
+      "ini_params": {
+        "speaker": "system",
+        "context_window_size": 0,
+        "model_name_or_path": "ConvLab/t5-small-nlg-multiwoz21"
+      },
+      "model_name": "t5nlg-mul",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    }
+  }
+}
