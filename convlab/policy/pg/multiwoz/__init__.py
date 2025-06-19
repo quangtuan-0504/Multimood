@@ -1,1 +1,0 @@
-from convlab.policy.pg.multiwoz.pg_policy import PGPolicy

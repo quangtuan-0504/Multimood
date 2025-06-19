@@ -1,1 +1,0 @@
-from convlab.e2e.sequicity.multiwoz.sequicity import Sequicity

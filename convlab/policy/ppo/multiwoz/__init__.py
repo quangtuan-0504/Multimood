@@ -1,1 +1,0 @@
-from convlab.policy.ppo.multiwoz.ppo_policy import PPOPolicy

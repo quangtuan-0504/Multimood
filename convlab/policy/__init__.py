@@ -1,1 +1,0 @@
-from convlab.policy.policy import Policy

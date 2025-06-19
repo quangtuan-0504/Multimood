@@ -1,1 +1,0 @@
-from convlab.nlg.sclstm.multiwoz.sc_lstm import SCLSTM
