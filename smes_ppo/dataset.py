@@ -57,7 +57,6 @@ def get_dataset(data_path):
     # TODO path
     raw_data_samples = load_jsonl(data_path)
 
-    # Xử lý dữ liệu để tạo danh sách các mẫu
     conversations = []
     completions = []
     for i, sources in enumerate(raw_data_samples):
@@ -89,7 +88,6 @@ def get_dataset(data_path):
         }
         conversation , label = get_conversation(components)
 
-        # Thêm dữ liệu đã xử lý vào danh sách
         conversations.append(conversation)
         completions.append(label)
 
@@ -98,7 +96,6 @@ def get_dataset(data_path):
         "completion": completions
     }
 
-    # Chuyển danh sách dữ liệu thành Dataset của Hugging Face
     dataset = Dataset.from_dict(dataset)
     dataset = dataset.shuffle(seed=42)
     return dataset
