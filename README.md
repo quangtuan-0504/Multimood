@@ -27,5 +27,5 @@ This repository supports multiple workflows for fine-tuning and evaluating video
 - **Description:** Use this branch to evaluate the performance of your fine-tuned model. It includes inference scripts and evaluation metrics to benchmark model quality on various tasks.
 
 ---
-###Acknowledge
+### Acknowledge
 - Special thank to DAMO-NLP-SG Team, their works on VideoLLaMA projects is our inspiration.
