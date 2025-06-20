@@ -7,7 +7,7 @@ This repository supports multiple workflows for fine-tuning and evaluating video
 ## 🔧 Fine-tuning Options
 
 ### 1. Supervised Fine-tuning
-- **Branch:** `feature/train`
+- **Branch:** `feature/train_sft`
 - **Description:** Use this branch if you want to perform supervised fine-tuning on the video-language model. This method relies on labeled training data to guide the learning process.
 
 ### 2. Fine-tuning with GRPO (Gradient-based Reinforcement Preference Optimization)
