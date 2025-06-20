@@ -19,9 +19,8 @@ from FlagEmbedding import BGEM3FlagModel
 import logging
 
 from reward_service_bgem3 import get_reward_similarity_with_bgem3
+from reward import reward_func
 
-# Use in case you have only one GPU
-# from reward import get_reward_similarity_with_bgem3
 
 def setup_rank_aware_logging(local_rank: int):
     """
@@ -166,7 +165,7 @@ def train(model_id: str, dataset: Dataset, lora_opt: bool = False, local_rank: i
         print(f'\nTrainer on rank {local_rank}...')
     trainer = GRPOTrainer(
         model=model,
-        reward_funcs=[get_reward_similarity_with_bgem3],
+        reward_funcs=[reward_func],
         args=training_args,
         train_dataset=dataset,
         callbacks=[ClearCacheCallback()]
