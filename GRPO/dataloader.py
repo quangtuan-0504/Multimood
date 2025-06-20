@@ -44,22 +44,13 @@ def get_conversation(components : Dict[str,str] , tokenizer : transformers.PreTr
         *components['chat_history'],
         {"role": "user", "content": total_prompt}
     ]
-    # print(max_prompt_ids_length)
     input_text = tokenizer.apply_chat_template(message_input, tokenize=False, add_generation_prompt=False)
     input_ids = tokenizer(input_text , truncation = False)['input_ids']
-    # print(input_ids)
     len_input_ids = len(input_ids)
-    # print('before len_input_ids:', len_input_ids)
-    # pprint(message_input)
    
     
-    # neu chi co turn sys + 1 turn user (tuc la ko co turn nao trong chat_history) ma van dai hon thi ke no, chiu r
     while len_input_ids > max_prompt_ids_length and len(components['chat_history']) > 0:
-        # turn_text_cut = tokenizer.apply_chat_template([components['chat_history'][0]], tokenize=False, add_generation_prompt=False)
-        # turn_ids_cut = tokenizer(turn_text_cut , truncation = False)['input_ids']
-        # len_turn_ids_cut = len(turn_ids_cut)
         components['chat_history'] = components['chat_history'][2:] # da cat la cat ca cap QA
-        # len_input_ids = len_input_ids - len_turn_ids_cut
         message_input = [
             {"role": "system", "content": 
                 SYSPROMPT.format(
@@ -84,12 +75,6 @@ def get_conversation(components : Dict[str,str] , tokenizer : transformers.PreTr
         *components['chat_history'],
         {"role": "user", "content": total_prompt}
     ]
-
-    # input_text = tokenizer.apply_chat_template(message_input, tokenize=False, add_generation_prompt=False)
-    # input_ids = tokenizer(input_text , truncation = False)['input_ids']
-    # len_input_ids = len(input_ids)
-    # print('after len_input_ids:', len_input_ids)
-    # pprint(message_input)
 
 
 
@@ -116,7 +101,6 @@ def get_dataset(data_path , tokenizer : transformers.PreTrainedTokenizer , max_p
     # TODO path
     raw_data_samples = load_jsonl(data_path)
 
-    # Xử lý dữ liệu để tạo danh sách các mẫu
     processed_data = []
     for i, sources in enumerate(raw_data_samples):
         if sources is None:
@@ -147,13 +131,11 @@ def get_dataset(data_path , tokenizer : transformers.PreTrainedTokenizer , max_p
         }
         total_prompt , label = get_conversation(components , tokenizer , max_prompt_ids_length)
 
-        # Thêm dữ liệu đã xử lý vào danh sách
         processed_data.append({
             'prompt': total_prompt,
             'ground_truths': label,
         })
 
-    # Chuyển danh sách dữ liệu thành Dataset của Hugging Face
     dataset = Dataset.from_list(processed_data)
     dataset = dataset.shuffle(seed=42)
     return dataset

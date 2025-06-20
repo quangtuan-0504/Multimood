@@ -74,13 +74,7 @@ class BGERewardModel:
             return_colbert_vecs=True
         )
         self.__name__ = "BGERewardModel"
-        # Chỉ dùng 1 GPU nếu có
-        # if torch.cuda.is_available():
-        #     print("Sử dụng GPU duy nhất...")
-        #     self.model.model.to('cuda:0')  # Chuyển mô hình tới GPU 0
-
-        # else:
-        #     print("Không có GPU, sử dụng CPU...")
+        
 
     def compute_bge_score(self, sentences_1, sentences_2):
         sentence_pairs = [[sentences_1, sentences_2]]
@@ -148,10 +142,6 @@ def train(model_id: str, dataset: Dataset, lora_opt: bool = False, local_rank: i
         if local_rank in [-1, 0]:
             model.print_trainable_parameters()
 
-    # Initialize the reward model (loaded once per process)
-    # reward_model = BGERewardModel() # init obj
-    # gọi hàm call thông qua tên obj, truyền tên obj chính là truyền hàm call
-
     if local_rank in [-1, 0]:
         print(f'\nGRPO config on rank {local_rank}...')
     training_args = GRPOConfig(
@@ -188,7 +178,7 @@ def train(model_id: str, dataset: Dataset, lora_opt: bool = False, local_rank: i
 
 def main(args):
     # Setup rank-aware logging as early as possible
-    setup_rank_aware_logging(args.local_rank) # mục đích để phân phối GPU khi dùng multiGPU nhe
+    setup_rank_aware_logging(args.local_rank) 
 
     if args.local_rank in [-1, 0]:
         print('Training: ...')
@@ -206,11 +196,8 @@ def main(args):
     )
 
 if __name__ == "__main__":
-    # Khởi tạo đối tượng thuộc lớp ArgumentParser để định nghĩa và phân tích ra 
-    # các đối số từ dòng lệnh chạy code trong terminal.
     parser = argparse.ArgumentParser()  
 
-    # Định nghĩa: Xác định các đối số dòng lệnh.
     parser.add_argument('--dataset-path', 
                         help='jsonl file path', 
                         default='/workspace/SMES_Therapy_framework/RL_GRPO_test/data/test.jsonl')
@@ -222,8 +209,6 @@ if __name__ == "__main__":
                         type=int, 
                         default=-1, 
                         help='Local rank for distributed training')
-    # Phân tích các đối số dòng lệnh và lưu lại giá trị các đối số vào đối tượng 'args'.
     args = parser.parse_args()
 
-    # Gọi hàm main và truyền đối số vào nè.
     main(args)

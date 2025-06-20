@@ -7,7 +7,7 @@ import torch
 import os
 from contextlib import asynccontextmanager
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"  # Chỉ cho phép sử dụng GPU đầu tiên (index 0), cái này giúp khỏi phải initial target device khi có nhiều GPU
+os.environ["CUDA_VISIBLE_DEVICES"] = "0" 
 def load_model():
     # Load BGE M3 Model at startup
     print('\nLoad BGE M3 Model ...')
@@ -38,7 +38,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="BGE M3 Score API", lifespan=lifespan , description="API to compute BGE M3 similarity scores between two sentences")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Cho phép tất cả các nguồn gốc. Bạn có thể giới hạn lại theo nhu cầu
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -89,12 +89,6 @@ async def get_bge_score(pair: SentencePair):
         # Return result
         return {'score' : score}
 
-        # Test service
-        # return {
-        #     "sentence_1": sentence_1,
-        #     "sentence_2": sentence_2,
-        #     "bge_score": score
-        # }
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error computing score: {str(e)}")

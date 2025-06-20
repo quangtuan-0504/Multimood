@@ -9,12 +9,8 @@ import time
 
 
 def generate_with_reasoning(prompt, model,tokenizer,max_prompt_tokens = 4096-100):
-    # Build the prompt from the dataset
     prompt = apply_chat_template({'prompt':prompt}, tokenizer)['prompt']
-    # prompt = tokenizer.apply_chat_template(prompt, tokenize=False, add_generation_prompt=True)
-    # prompt = " ".join(entry["content"] for entry in prompt)
 
-    # Tokenize and move to the same device as the model
     input_ids = tokenizer(prompt, return_tensors="pt").to(model.device)
 
     input_ids = {
@@ -25,17 +21,12 @@ def generate_with_reasoning(prompt, model,tokenizer,max_prompt_tokens = 4096-100
     # Generate text without gradients
     start_time = time.time()
     with torch.no_grad():
-        # output_ids = model.generate(**input_ids, max_length=4096, temperature = 0.1)
         output_ids = model.generate(**input_ids, max_new_tokens = 100 , max_length=4096, temperature = 0.02)
     end_time = time.time()
 
-    # Cắt bỏ phần prompt dựa trên số token đầu vào
     generated_tokens = output_ids[0][input_ids["input_ids"].shape[1]:]
-    # Giải mã chỉ phần sinh thêm
     generated_text = tokenizer.decode(generated_tokens, skip_special_tokens=True)
 
-    # Decode and extract model response
-    # generated_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
 
     # Get inference time
     inference_duration = end_time - start_time
@@ -58,7 +49,6 @@ trained_tokenizer = AutoTokenizer.from_pretrained(model_id)
 data_path = '/workspace/SMES_Therapy_framework/jsonl_TrainValMerge_noDescPerTurn_noDescCurr_onlyUtt_RL_max_emotion_max_strategy/test.jsonl'
 dataset = get_dataset(data_path)
 prompt = dataset[10]['prompt']
-# pprint(prompt[:2])
 
 print(type(prompt))
 generated_text, inference_duration, num_generated_tokens = generate_with_reasoning(prompt,trained_model,trained_tokenizer)

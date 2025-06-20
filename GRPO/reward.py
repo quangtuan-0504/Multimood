@@ -29,11 +29,7 @@ print('\nLoad BGE M3 Model ...')
 model_bgem3 = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True, return_dense=True, return_sparse=True, return_colbert_vecs=True) 
 def get_reward_similarity_with_bgem3(prompts , completions,**kwargs):
    
-    # print("prompt len ids:", prompt)
-    # print(kwargs['ground_truths'])
     print("completions len:", len(completions))
-    # format_rewards = format_reward(completions, **kwargs)
-    # print("format reward:", format_rewards)
     print('label:' , kwargs['ground_truths'][0][0]['content'])
     print("completions: ")
     for completion in completions:

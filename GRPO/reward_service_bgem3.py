@@ -10,28 +10,21 @@ import time
 
 
 def get_score_from_bgem3(completion : str, ground_truth : str) -> int:
-    # URL của endpoint FastAPI
-    # url = os.getenv(url)
     url = "http://0.0.0.0:8000/compute-score/"
 
-    # Dữ liệu đầu vào: hai câu để so sánh
     payload = {
         "sentence_1": ground_truth,
         "sentence_2": completion
     }
 
-    # Tiêu đề yêu cầu
     headers = {
         "Content-Type": "application/json"
     }
 
     try:
-        # Gửi yêu cầu POST
         response = requests.post(url, data=json.dumps(payload), headers=headers)
         
-        # Kiểm tra trạng thái phản hồi
         if response.status_code == 200:
-            # Kết quả
             result = response.json()
             return result['score']
         else:
@@ -46,11 +39,7 @@ def get_score_from_bgem3(completion : str, ground_truth : str) -> int:
       
 def get_reward_similarity_with_bgem3(prompts, completions,**kwargs) -> list:
    
-    # print("prompt len ids:", prompt)
-    # print(kwargs['ground_truths'])
     print("completions len:", len(completions))
-    # format_rewards = format_reward(completions, **kwargs)
-    # print("format reward:", format_rewards)
     print('label:' , kwargs['ground_truths'][0][0]['content'])
     print("completions: ")
     for completion in completions:
