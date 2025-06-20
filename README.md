@@ -1,6 +1,9 @@
 # 🧠 MultiMood Fine-tuning & Evaluation Guide
 
+
 This repository supports multiple workflows for fine-tuning and evaluating video-language models. Please choose the appropriate branch based on your training or evaluation objective:
+
+![Overview](overview.png)
 
 ---
 
