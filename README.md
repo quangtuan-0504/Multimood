@@ -97,7 +97,7 @@ python serving_bgem3/service.py
 Use the following command to start training. Modify parameters if needed:
 
 ```bash
-torchrun --nproc_per_node=2 RL_GRPO/train_base.py \
+torchrun --nproc_per_node=2 GRPO/train_base.py \
   --dataset-path DATA_PATH \
   --model-id 'MODEL_PATH'
 ```
