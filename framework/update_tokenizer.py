@@ -21,7 +21,7 @@ def make_supervised_data_module(tokenizer: transformers.PreTrainedTokenizer,
 # Initialize tokenizer
 tokenizer = transformers.AutoTokenizer.from_pretrained(
     "DAMO-NLP-SG/VideoLLaMA2.1-7B-AV",
-    # cache_dir ="",# chỉ định thư mục cache để lưu
+    # cache_dir ="",# specify cache directory to save
     model_max_length=512,
     padding_side="right",
     use_fast=True,

@@ -11,9 +11,9 @@ def inference(args):
 
     model_path = args.model_path
     model, processor, tokenizer = model_init(model_path)
-    # put dataloader here
-    # get per sample data (prompt,path to vdieo) from dataset , inference , and save predict, label
-    # loop per sample data below.
+    # Initialize dataloader
+    # Extract (prompt, video path) from each sample, run inference, and save prediction and label
+    # Loop through each sample below
     if args.modal_type == "a":
         model.model.vision_tower = None
     elif args.modal_type == "v":
@@ -23,7 +23,7 @@ def inference(args):
     else:
         raise NotImplementedError
     # Audio-visual Inference
-    audio_video_path = "data_inference/video_data/dia0_utt0_0.mp4"
+    audio_video_path = "audio_video_path.mp4"
     preprocess = processor['audio' if args.modal_type == "a" else "video"]
     if args.modal_type == "a":
         audio_video_tensor = preprocess(audio_video_path)

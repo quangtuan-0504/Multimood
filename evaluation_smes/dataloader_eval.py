@@ -1,3 +1,10 @@
+# NOTE: torch must be imported before transformers. Otherwise, `Segmentation fault (core dumped)` will occur.
+import torch
+from torch.utils.data import Dataset
+
+# NOTE: fast tokenizer warning issue: https://github.com/huggingface/transformers/issues/5486   
+os.environ["TOKENIZERS_PARALLELISM"] = "true"
+
 import re
 import os
 import copy
@@ -10,11 +17,6 @@ from typing import Dict, Optional, Sequence, List
 import h5py
 from moviepy.editor import VideoFileClip, concatenate_videoclips
 import tempfile
-
-# torch-related packages
-# NOTE: torch must be imported before transformers. Otherwise, `Segmentation fault (core dumped)` will occur.
-import torch
-from torch.utils.data import Dataset
 
 import transformers
 from transformers.models.mixtral.modeling_mixtral import MixtralSparseMoeBlock
@@ -33,15 +35,7 @@ import subprocess
 import shutil
 import uuid
 
-# NOTE: fast tokenizer warning issue: https://github.com/huggingface/transformers/issues/5486   
-os.environ["TOKENIZERS_PARALLELISM"] = "true"
-
 local_rank = None
-
-
-
-
-
 
 def rank0_print(*args):
     if local_rank == 0:
@@ -69,10 +63,12 @@ class ModelArguments:
     num_k_vid: Optional[int]  = field(default=1, metadata={"help": "This is the number of current videos"})
     version: Optional[str] = field(default="v1", metadata={"help": "Version of the conversation template."})
     freeze_backbone: bool = field(default=False, metadata={"help": "Whether to freeze the LLM backbone."})
+    
     # Connector Arguments
     mm_projector_type: Optional[str] = field(default='linear')
     tune_mm_mlp_adapter: bool = field(default=False)
     pretrain_mm_mlp_adapter: Optional[str] = field(default=None )
+    
     # Vision tower Arguments
     vision_tower: Optional[str] = field(default=None)
     mm_vision_select_layer: Optional[int] = field(default=-1)
@@ -87,11 +83,12 @@ class ModelArguments:
     num_user_emotion_classes: Optional[int] = field(default=7)
     num_system_emotion_classes: Optional[int] = field(default=7)
     num_strategy_classes: Optional[int] = field(default=10)
+    
     # MambaCompressor
     mamba_compressor: Optional[str] = field(default=None, metadata={"help": "path to the mamba compressor weights."})
     freeze_mamba_compressor: bool = field(default=False, metadata={"help": "Whether to freeze the mamba compressor."})
 
-
+# Configuration for data loading and preprocessing
 @dataclass
 class DataArguments:
     # Path Arguments
@@ -109,7 +106,7 @@ class DataArguments:
     # Preprocess Arguments
     image_aspect_ratio: str = 'square'
 
-
+# Training arguments with quantization and LoRA support
 @dataclass
 class TrainingArguments(transformers.TrainingArguments):
     optim: str = field(default="adamw_torch")
@@ -146,7 +143,7 @@ class TrainingArguments(transformers.TrainingArguments):
     lora_bias: str = "none"
     output_dir: str = field(default="./output", metadata={"help": "The output directory where the model predictions and checkpoints will be written."})
 
-
+# Concatenate multiple video clips using FFmpeg
 def ffmpeg_concat_videos(input_paths: List[str], output_dir='./concated_video_tmp') -> str:
     """
     Concatenates multiple videos using FFmpeg without re-encoding, ensuring compatibility in multi-GPU environments.
@@ -292,7 +289,7 @@ class LazySupervisedDataset(Dataset):
         super(LazySupervisedDataset, self).__init__()
         self.mix_sampler_tag = False
         self.tokenizer = tokenizer
-        self.data_args = data_args # để biết data_args lấy từ đâu thì cứ lần ngược ra , nơi khởi tạo obj của lớp này chỗ nào ...
+        self.data_args = data_args # to know where data_args comes from, just trace back, where is the initialization of obj of this class...
         self.raw_data_samples = load_jsonl(data_path)
 
         for idx, item in enumerate(self.raw_data_samples):
@@ -308,7 +305,6 @@ class LazySupervisedDataset(Dataset):
         # print(sources)
 
         # Extract raw data
-        # print(type(sources['history_chat']))
         chat_history = sources['history_chat'][-self.data_args.k_turn_history * 2 : ]
 
         cur_user_vid = sources['path_to_vid_user_most_recent'][-self.data_args.k_cur_vid_user : ]
@@ -343,7 +339,6 @@ class LazySupervisedDataset(Dataset):
         if cur_user_vid:
             vid_folder = self.data_args.vid_folder
             video_files = [os.path.join(vid_folder, vid) for vid in cur_user_vid]
-            # video_files = ['/workspace/SMES_Therapy_framework/data_eval_test/vid_test/Breakup.mp4','/workspace/SMES_Therapy_framework/data_eval_test/vid_test/Dream_analysis.mp4']
             # Concatenate videos
             concatenated_video_path = ffmpeg_concat_videos(input_paths = video_files, output_dir= './concated_video_tmp')
 
@@ -365,10 +360,6 @@ if __name__ == "__main__":
 
     # parser = transformers.HfArgumentParser((ModelArguments,DataArguments))
     # model_args, data_args = parser.parse_args_into_dataclasses()
-
-   
-
-    
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_path,
         model_max_length=training_args.model_max_length,

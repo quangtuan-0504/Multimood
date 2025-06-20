@@ -105,8 +105,8 @@ def evaluate_smes(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset-path', help='jsonl test set path',default='/workspace/SMES_Therapy_framework/data/mesc/test.jsonl')
-    parser.add_argument('--model-path', help='', required=False, default='VideoLLaMA2-1-7B-AV-Full-Desc-Mamba-25epochs')
+    parser.add_argument('--dataset-path', help='jsonl test set path',default='dataset_path')
+    parser.add_argument('--model-path', help='', required=False, default='model_path')
     parser.add_argument('--modal-type', choices=["a", "v", "av"], help='', default='av')
     parser.add_argument('--res-folder', help='path to file .jsonl predict', default='./eval_test/result')
 
