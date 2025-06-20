@@ -98,14 +98,14 @@ Use the following command to start training. Modify parameters if needed:
 
 ```bash
 torchrun --nproc_per_node=2 RL_GRPO/train_base.py \
-  --dataset-path jsonl_TrainValMerge_noDescPerTurn_noDescCurr_onlyUtt_RL_max_emotion_max_strategy/test.jsonl \
-  --model-id 'Qwen/Qwen2-0.5B-Instruct'
+  --dataset-path DATA_PATH \
+  --model-id 'MODEL_PATH'
 ```
 
 ### 🧷 Arguments explained:
 - `--nproc_per_node=2`: Number of GPUs to use. Set to `1` if using a single GPU.
 - `--dataset-path`: Path to the `.jsonl` dataset file downloaded in Step 4.
-- `--model-id`: Hugging Face model name (`Qwen/Qwen2-0.5B-Instruct`).
+- `--model-id`: Hugging Face model name.
 
 ---
 
@@ -115,7 +115,6 @@ torchrun --nproc_per_node=2 RL_GRPO/train_base.py \
 - If you face issues with Flash Attention or other compiled packages, refer to their specific build instructions for CUDA 12.4.
 ---
 
----
 
 ## ✅ Done!
 
