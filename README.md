@@ -33,6 +33,7 @@ This repository supports multiple workflows for fine-tuning and evaluating video
 ---
 ## 📚 Citation
 If you use this code or find our work helpful, please cite:
+```bibitex
 @inproceedings{Le2026Trustworthiness,
   title={Reinforce Trustworthiness in Multimodal Emotional Support System},
   author={Le, Huy M. and Nguyen, Dat Tien and Vo, Ngan T. T. and Nguyen, Tuan D. Q. and
@@ -44,6 +45,7 @@ If you use this code or find our work helpful, please cite:
   address={Singapore},
   url={https://ink.library.smu.edu.sg/sis_research/1075}
 }
+```
 ---
 ### Acknowledge
 - Special thanks to the **DAMO-NLP-SG Team**, whose work on the **VideoLLaMA** projects inspired this repository.
