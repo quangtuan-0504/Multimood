@@ -6,15 +6,11 @@ This repository supports multiple workflows for fine-tuning and evaluating video
 ![Overview](overview.png)
 
 ---
-```markdown
 ## Pretrained Weights
 
-Download the pretrained weights:
+You can download pretrained weights here:
 
-| Model | File | Link |
-|------|------|------|
-| MULTIMOOD| `multimood_aaai26.ckpt` | PASTE_LINK_HERE |
-```
+- **MULTIMOOD (AAAI-26)**: [Download](PASTE_LINK_HERE)
 
 ---
 
