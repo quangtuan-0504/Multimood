@@ -35,9 +35,7 @@ If you use this code or find our work helpful, please cite:
 ```bibitex
 @inproceedings{Le2026Trustworthiness,
   title={Reinforce Trustworthiness in Multimodal Emotional Support System},
-  author={Le, Huy M. and Nguyen, Dat Tien and Vo, Ngan T. T. and Nguyen, Tuan D. Q. and
-          Binh, Nguyen Le and Nguyen, Duy Minh Ho and Sonntag, Daniel and
-          Liao, Lizi and Nguyen, Binh T.},
+  author={Le, Huy M. and Nguyen, Dat Tien and Vo, Ngan T. T. and Nguyen, Tuan D. Q. and Binh, Nguyen Le and Nguyen, Duy Minh Ho and Sonntag, Daniel and Liao, Lizi and Nguyen, Binh T.},
   booktitle={Proceedings of the 40th Annual AAAI Conference on Artificial Intelligence (AAAI-26)},
   year={2026},
   pages={1--18},
