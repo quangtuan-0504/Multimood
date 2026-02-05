@@ -17,6 +17,7 @@ Download example:
 ```bash
 git lfs install
 git clone https://huggingface.co/PASTE_USERNAME/PASTE_REPO
+```
 
 ---
 
