@@ -3,7 +3,7 @@
 
 This repository supports multiple workflows for fine-tuning and evaluating video-language models. Please choose the appropriate branch based on your training or evaluation objective:
 
-![Overview](overview.png)
+![Overview](overview.jpg)
 
 ---
 ## Pretrained Weights
@@ -36,6 +36,8 @@ You can download pretrained weights here:
 - **Branch:** [`feature/inference_eval`](https://github.com/quangtuan-0504/Multimood/blob/feature/inference_eval)
 - **Description:** Use this branch to evaluate the performance of your fine-tuned model. It includes inference scripts and evaluation metrics to benchmark model quality on various tasks.
 
+### 5. Model's Weights
+- **Huggingface Model** [`weights`](https://huggingface.co/QuangTuan/MultiMood-7B-GRPO-VisualAudioText-Comp)
 ---
 ## 📚 Citation
 If you use this code or find our work helpful, please cite:
