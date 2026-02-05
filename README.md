@@ -14,6 +14,7 @@ Download the pretrained weights:
 | Model | File | Link |
 |------|------|------|
 | MULTIMOOD| `multimood_aaai26.ckpt` | PASTE_LINK_HERE |
+```
 
 ---
 
