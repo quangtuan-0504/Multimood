@@ -44,6 +44,7 @@ If you use this code or find our work helpful, please cite:
   url={https://ink.library.smu.edu.sg/sis_research/1075}
 }
 ```
+If you have any inquiries, please feel free to contact us by sending an [`email`](HuyM.Le@mbzuai.ac.ae).
 ---
 ### Acknowledge
 - Special thanks to the **DAMO-NLP-SG Team**, whose work on the **VideoLLaMA** projects inspired this repository.
