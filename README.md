@@ -44,7 +44,7 @@ If you use this code or find our work helpful, please cite:
   url={https://ink.library.smu.edu.sg/sis_research/1075}
 }
 ```
-If you have any inquiries, please feel free to contact us by sending an [`email`](HuyM.Le@mbzuai.ac.ae).
+If you have any questions or inquiries, feel free to reach out to us at [`HuyM.Le@mbzuai.ac.ae`](mailto:HuyM.Le@mbzuai.ac.ae).
 
 ---
 ### Acknowledge
