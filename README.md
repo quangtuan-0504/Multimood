@@ -11,7 +11,7 @@ This repository supports multiple workflows for fine-tuning and evaluating video
 Pretrained model weights are available on Hugging Face:
 
 - **MULTIMOOD (AAAI-26)**  
-  🤗 **HuggingFace** [`weights`](https://huggingface.co/QuangTuan/MultiMood-7B-GRPO-VisualAudioText-Comp)
+  🤗 [MultiMood-7B-GRPO-VisualAudioText-Comp](https://huggingface.co/QuangTuan/MultiMood-7B-GRPO-VisualAudioText-Comp)
 
 Download example:
 ```bash
