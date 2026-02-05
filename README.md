@@ -15,7 +15,7 @@ MultiMood is a multimodal natural language processing system (audio and visual) 
 ## 🧹 Step 1: Clone the source code and switch to the `feature/inference_eval` branch
 
 ```bash
-git clone <link-to-github-repo>
+git clone https://github.com/quangtuan-0504/Multimood
 cd MultiMood
 git checkout feature/inference_eval
 ```
