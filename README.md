@@ -27,7 +27,6 @@ This repository supports multiple workflows for fine-tuning and evaluating video
 
 ### 4. Inference & Evaluation
 - **Branch:** [`feature/inference_eval`](https://github.com/quangtuan-0504/Multimood/blob/feature/inference_eval)
-- **Anonymous Link:** https://anonymous.4open.science/r/Multimood-0D26
 - **Description:** Use this branch to evaluate the performance of your fine-tuned model. It includes inference scripts and evaluation metrics to benchmark model quality on various tasks.
 
 ---
