@@ -8,9 +8,15 @@ This repository supports multiple workflows for fine-tuning and evaluating video
 ---
 ## Pretrained Weights
 
-You can download pretrained weights here:
+Pretrained model weights are available on Hugging Face:
 
-- **MULTIMOOD (AAAI-26)**: [Download](PASTE_LINK_HERE)
+- **MULTIMOOD (AAAI-26)**  
+  🤗 https://huggingface.co/PASTE_USERNAME/PASTE_REPO
+
+Download example:
+```bash
+git lfs install
+git clone https://huggingface.co/PASTE_USERNAME/PASTE_REPO
 
 ---
 
