@@ -14,7 +14,7 @@ This guide provides detailed steps to set up the environment, install dependenci
 ## 🧹 Step 1: Clone the source code and switch to the GRPO branch
 
 ```bash
-git clone ```https://github.com/quangtuan-0504/Multimood/```
+git clone https://github.com/quangtuan-0504/Multimood/
 cd Multimood
 git checkout feature/GRPO
 ```
