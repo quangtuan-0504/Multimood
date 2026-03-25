@@ -18,7 +18,18 @@ Download example:
 git lfs install
 git clone https://huggingface.co/PASTE_USERNAME/PASTE_REPO
 ```
+---
 
+## 💻 Recommended Resources
+
+To effectively fine-tune and evaluate the MULTIMOOD model, the following hardware configuration is recommended:
+
+| Component   | Requirement            |
+| ----------- | ---------------------- |
+| **GPU**     | 4 × NVIDIA H100 (80GB) |
+| **CUDA**    | 12.4 or later          |
+| **RAM**     | ≥ 64 GB                |
+| **Storage** | ≥ 200 GB SSD           |
 ---
 
 ## 🔧 Fine-tuning Options
